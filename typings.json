@@ -9,6 +9,7 @@
     "gulp": "registry:dt/gulp#3.8.0+20160316155526",
     "gulp-load-plugins": "registry:dt/gulp-load-plugins#0.0.0+20160316155526",
     "gulp-util": "registry:dt/gulp-util#0.0.0+20160316155526",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160412134438",
     "node": "registry:dt/node#4.0.0+20160412142033",
     "orchestrator": "registry:dt/orchestrator#0.0.0+20160316155526",
     "q": "registry:dt/q#0.0.0+20160417152954",
