@@ -1,3 +1,36 @@
+interface IEqualityComparer<T> {
+    Equals: (x: T, y: T) => boolean;
+    GetHashCode: (obj: T) => number;
+}
+
+interface IGrouping<TKey, T> {
+    Key: TKey;
+    Elements: T[];
+} 
+
+declare global {
+    interface Array<T> {
+        ToList(): List<T>;
+    }
+
+    interface Object {
+        GetHashCode(obj: any): number;
+        Equals(x: any, y: any): boolean;
+    }
+    // interface Array<T> {
+    //     single(): T;
+    //     first(lambda?: predicate<T>): T;
+    //     indexOfFirst(lambda: predicate<T>): number;
+    //     any(lambda?: predicate<T>): boolean;
+    //     select<R>(lambda?: (item: T) => R): Array<R>;
+    //     where(lambda: predicate<T>): Array<T>;
+    //     distinct(lambda?: (a: T, b: T) => boolean): Array<T>;
+    //     count(lambda?: predicate<T>): number;
+    //     remove(item: T);
+    // }
+}
+
+
 Array.prototype.ToList = () => new List(this);
 Object.prototype.GetHashCode = (obj) => 0; //Todo: Need to implement.
 Object.prototype.Equals = (x, y) => false; //Todo: Need to implement.
@@ -89,7 +122,7 @@ export class List<T> {
         return this.DistinctBy((o) => o, comparer);
     }
 
-    public DistinctBy<U>(Func: (x: T) => U, comparer: IEqualityComparer<T>): List<T> {
+    public DistinctBy<U>(Func: (x: T) => U, comparer: IEqualityComparer<U>): List<T> {
         let a = this.array;
         let e: T;
 
@@ -98,7 +131,7 @@ export class List<T> {
         for (let i = 0, n = a.length; i < n; ++i) {
             e = a[i];
 
-            let objKey = Func(e);
+            let objKey: U = Func(e);
 
             if (!keys.ToList().Contains(objKey, comparer)) {
                 keys.push(objKey);
