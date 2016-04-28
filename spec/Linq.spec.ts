@@ -1,5 +1,4 @@
-/// <reference path="../typings/main.d.ts" />
-import {List} from '../src/Linq';
+/// <reference path="../src/linq.ts" />
 
 describe('Array', () => {
     let list: Array<number>;
@@ -8,14 +7,14 @@ describe('Array', () => {
     });
 
     it('ToList', () => {
-        let lst = new List<number>();
+        let lst = new Array<number>();
         lst.Add(1);
         lst.Add(2);
         lst.Add(3);
-        
-        let exp = [1, 2, 3, 4, 5]
-            .ToList();
+
+        let exp = [1, 2, 3, 4, 5];
+
         return expect(exp)
             .toEqual(list);
-    })
+    });
 });

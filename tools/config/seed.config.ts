@@ -57,44 +57,44 @@ export class SeedConfig {
   ];
 
 
-  get PROD_DEPENDENCIES(): InjectableDependency[] {
-    console.warn('The property "PROD_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-    return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.PRODUCTION)))
-      .concat(this.APP_ASSETS.filter(filterDependency.bind(null, ENVIRONMENTS.PRODUCTION)));
-  }
+  // get PROD_DEPENDENCIES(): InjectableDependency[] {
+  //   console.warn('The property "PROD_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.PRODUCTION)))
+  //     .concat(this.APP_ASSETS.filter(filterDependency.bind(null, ENVIRONMENTS.PRODUCTION)));
+  // }
 
-  get DEV_DEPENDENCIES(): InjectableDependency[] {
-    console.warn('The property "DEV_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-    return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.DEVELOPMENT)))
-      .concat(this.APP_ASSETS.filter(filterDependency.bind(null, ENVIRONMENTS.DEVELOPMENT)));
-  }
+  // get DEV_DEPENDENCIES(): InjectableDependency[] {
+  //   console.warn('The property "DEV_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.DEVELOPMENT)))
+  //     .concat(this.APP_ASSETS.filter(filterDependency.bind(null, ENVIRONMENTS.DEVELOPMENT)));
+  // }
 
-  set DEV_DEPENDENCIES(val: InjectableDependency[]) {
-    console.warn('The property "DEV_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-  }
+  // set DEV_DEPENDENCIES(val: InjectableDependency[]) {
+  //   console.warn('The property "DEV_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  // }
 
-  set PROD_DEPENDENCIES(val: InjectableDependency[]) {
-    console.warn('The property "PROD_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-  }
+  // set PROD_DEPENDENCIES(val: InjectableDependency[]) {
+  //   console.warn('The property "PROD_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  // }
 
-  get DEV_NPM_DEPENDENCIES(): InjectableDependency[] {
-    console.warn('The property "DEV_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-    return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.DEVELOPMENT)));
-  }
-  get PROD_NPM_DEPENDENCIES(): InjectableDependency[] {
-    console.warn('The property "PROD_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-    return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.PRODUCTION)));
-  }
-  set DEV_NPM_DEPENDENCIES(value: InjectableDependency[]) {
-    console.warn('The property "DEV_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-    const notDev = this.NPM_DEPENDENCIES.filter(d => !filterDependency(ENVIRONMENTS.DEVELOPMENT, d));
-    this.NPM_DEPENDENCIES = notDev.concat(value);
-  }
-  set PROD_NPM_DEPENDENCIES(value: InjectableDependency[]) {
-    console.warn('The property "PROD_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
-    const notProd = this.NPM_DEPENDENCIES.filter(d => !filterDependency(ENVIRONMENTS.PRODUCTION, d));
-    this.NPM_DEPENDENCIES = notProd.concat(value);
-  }
+  // get DEV_NPM_DEPENDENCIES(): InjectableDependency[] {
+  //   console.warn('The property "DEV_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.DEVELOPMENT)));
+  // }
+  // get PROD_NPM_DEPENDENCIES(): InjectableDependency[] {
+  //   console.warn('The property "PROD_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, ENVIRONMENTS.PRODUCTION)));
+  // }
+  // set DEV_NPM_DEPENDENCIES(value: InjectableDependency[]) {
+  //   console.warn('The property "DEV_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   const notDev = this.NPM_DEPENDENCIES.filter(d => !filterDependency(ENVIRONMENTS.DEVELOPMENT, d));
+  //   this.NPM_DEPENDENCIES = notDev.concat(value);
+  // }
+  // set PROD_NPM_DEPENDENCIES(value: InjectableDependency[]) {
+  //   console.warn('The property "PROD_NPM_DEPENDENCIES" is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   const notProd = this.NPM_DEPENDENCIES.filter(d => !filterDependency(ENVIRONMENTS.PRODUCTION, d));
+  //   this.NPM_DEPENDENCIES = notProd.concat(value);
+  // }
 
   get DEPENDENCIES(): InjectableDependency[] {
     return normalizeDependencies(this.NPM_DEPENDENCIES.filter(filterDependency.bind(null, this.ENV)))
@@ -142,14 +142,14 @@ export class SeedConfig {
     'android >= 4.4',
     'bb >= 10'
   ];
-  getEnvDependencies() {
-    console.warn('The "getEnvDependencies" method is deprecated. Consider using "DEPENDENCIES" instead.');
-    if (this.ENV === 'prod') {
-      return this.PROD_DEPENDENCIES;
-    } else {
-      return this.DEV_DEPENDENCIES;
-    }
-  }
+  // getEnvDependencies() {
+  //   console.warn('The "getEnvDependencies" method is deprecated. Consider using "DEPENDENCIES" instead.');
+  //   if (this.ENV === 'prod') {
+  //     return this.DEPENDENCIES;
+  //   } else {
+  //     return this.DEPENDENCIES;
+  //   }
+  // }
 }
 
 

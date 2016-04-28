@@ -4,3 +4,8 @@ dist
 ref
 spec/*.js
 src/*.js
+tools/**/*.js
+tools/**/*.map
+src/Linq.txt
+*.js
+*.map

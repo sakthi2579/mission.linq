@@ -11,7 +11,7 @@ export = () => {
     'typings/browser.d.ts',
     TOOLS_DIR + '/manual_typings/**/*.d.ts',
     join(APP_SRC, '**/*.ts'),
-    join('spec/*.spec.ts'),
+    '!' + join(APP_SRC, '**/*.spec.ts'),
     '!' + join(APP_SRC, '**/*.e2e.ts')
   ];
   let result = gulp.src(src)
