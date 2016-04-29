@@ -9,10 +9,6 @@ interface KeyArrayPair<K, T> {
 
 declare global {
     interface Array<T> {
-        All: {
-            (): boolean;
-            (Func: Predicate<T>): boolean;
-        };
         First: {
             (): T;
             (Func: Predicate<T>): T;
@@ -45,8 +41,8 @@ declare global {
             (): number;
             (Func: (item: T) => number): number;
         };
-
         Add(item: T): Array<T>;
+        All(Func: Predicate<T>): boolean;
         Average(Func: (item: T) => number): number;
         OrderBy(): void;
         Where(Func: Predicate<T>): Array<T>;
@@ -60,13 +56,11 @@ declare global {
     }
 }
 
-Array.prototype.All = function (func?: (item: any) => boolean): boolean {
+Array.prototype.All = function (func: (item: any) => boolean): boolean {
     let a: Array<any> = this;
-    if (func) {
-        for (let i of a) {
-            if (!func(i)) {
-                return false;
-            }
+    for (let i of a) {
+        if (!func(i)) {
+            return false;
         }
     }
     return true;
@@ -96,7 +90,8 @@ Array.prototype.Any = function (func?: (item: any) => boolean): boolean {
 Array.prototype.Average = function (func: (item: any) => number): number {
     let a: Array<any> = this;
     if (a.length === 0) {
-        throw 'Array contains no elements.';
+        const err = 'Array contains no elements';
+        throw err;
     }
     let len = a.length;
     let total = a.Sum(func);
@@ -106,7 +101,8 @@ Array.prototype.Average = function (func: (item: any) => number): number {
 Array.prototype.Max = function (func?: (item: any) => number): number {
     let a: Array<any> = this;
     if (a.length === 0) {
-        throw 'Array contains no elements.';
+        const err = 'Array contains no elements';
+        throw err;
     }
     func = func || ((o) => o);
     let max = func(a[0]);
@@ -122,7 +118,8 @@ Array.prototype.Max = function (func?: (item: any) => number): number {
 Array.prototype.Min = function (func?: (item: any) => number): number {
     let a: Array<any> = this;
     if (a.length === 0) {
-        throw 'Array contains no elements.';
+        const err = 'Array contains no elements';
+        throw err;
     }
     func = func || ((o) => o);
     let min = func(a[0]);
