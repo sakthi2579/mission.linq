@@ -41,10 +41,18 @@ declare global {
             (): number;
             (Func: (item: T) => number): number;
         };
+        OrderBy: {
+            <TKey>(Func: (item: T) => TKey): Array<T>;
+            <TKey>(Func: (item: T) => TKey, comparer: (a: TKey, b: TKey) => number): Array<T>;
+        };
+        OrderByDescending: {
+            <TKey>(Func: (item: T) => TKey): Array<T>;
+            <TKey>(Func: (item: T) => TKey, comparer: (a: TKey, b: TKey) => number): Array<T>;
+        };
+
         Add(item: T): Array<T>;
         All(Func: Predicate<T>): boolean;
         Average(Func: (item: T) => number): number;
-        OrderBy(): void;
         Where(Func: Predicate<T>): Array<T>;
         Select<TResult>(Func: (item: T) => TResult): Array<TResult>;
         Skip(count: number): Array<T>;
@@ -132,8 +140,18 @@ Array.prototype.Min = function (func?: (item: any) => number): number {
     return min;
 };
 
-Array.prototype.OrderBy = function (): void {
-    throw 'Not Implemented';
+Array.prototype.OrderBy = function (func: (item: any) => any, comparer?: (a: any, b: any) => number): Array<any> {
+    let a: Array<any> = this;
+    comparer = comparer || ((a: any, b: any) => a > b ? 1 : a < b ? -1 : 0);
+    let res: Array<any> = a.sort((x: any, y: any) => comparer(func(x), func(y)));
+    return res;
+};
+
+Array.prototype.OrderByDescending = function (func: (item: any) => any, comparer?: (a: any, b: any) => number): Array<any> {
+    let a: Array<any> = this;
+    comparer = comparer || ((a: any, b: any) => a > b ? -1 : a < b ? 1 : 0);
+    let res: Array<any> = a.sort((x: any, y: any) => comparer(func(x), func(y)));
+    return res;
 };
 
 Array.prototype.Count = function (func?: (item: any) => boolean): number {
