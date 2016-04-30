@@ -141,6 +141,51 @@ describe('Array', () => {
         });
     });
 
+    describe('Skip', () => {
+        let list: Array<number>;
+        beforeEach(function () {
+            list = [1, 2, 3, 4, 5];
+        });
+        it('Skip first 2 items - Check Length', () => {
+            let res = <Array<number>>list.Skip(2);
+            return expect(res.length).toEqual(3);
+        });
+        it('Skip first 2 items - Check Items', () => {
+            let res = <Array<number>>list.Skip(2);
+            let val = [3, 4, 5];
+            return expect(res).toEqual(val);
+        });
+    });
+    describe('Take', () => {
+        let list: Array<number>;
+        beforeEach(function () {
+            list = [1, 2, 3, 4, 5];
+        });
+        it('Take first 3 items - Check Length', () => {
+            let res = <Array<number>>list.Take(3);
+            return expect(res.length).toEqual(3);
+        });
+        it('Take first 3 items - Check Items', () => {
+            let res = <Array<number>>list.Take(3);
+            let val = [1, 2, 3];
+            return expect(res).toEqual(val);
+        });
+    });
+    describe('Skip and Take', () => {
+        let list: Array<number>;
+        beforeEach(function () {
+            list = [1, 2, 3, 4, 5];
+        });
+        it('Skip first 2 items and take 2 items - Length', () => {
+            let res = <Array<number>>list.Skip(2).Take(2);
+            return expect(res.length).toEqual(2);
+        });
+        it('Skip first 2 items and take 2 items - Check Items', () => {
+            let res = <Array<number>>list.Skip(2).Take(2);
+            let val = [3, 4];
+            return expect(res).toEqual(val);
+        });
+    });
     describe('Object Compare Test', () => {
         it('Both object should match', () => {
             let val = { name: 'Natarajan', Age: 30 };
